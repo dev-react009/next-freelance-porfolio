@@ -291,7 +291,7 @@ export default function Projects() {
                             Ready to Start Your Project?
                         </h3>
                         <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
-                            Let's work together to bring your ideas to life. I'm available for new projects and excited to help you achieve your goals.
+                            Let&apos;s work together to bring your ideas to life. I&apos;m available for new projects and excited to help you achieve your goals.
                         </p>
                         <motion.a
                             href="#contact"

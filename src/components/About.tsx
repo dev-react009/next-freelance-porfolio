@@ -190,11 +190,11 @@ export default function About() {
                                         <p>
                                             I started my journey as a passionate developer with a love for creating 
                                             digital experiences that make a difference. With 2+ years of enterprise 
-                                            experience under my belt, I've worked on complex projects that have 
+                                            experience under my belt, I&apos;ve worked on complex projects that have 
                                             shaped my understanding of scalable architecture and user-centered design.
                                         </p>
                                         <p>
-                                            Now, I'm transitioning from full-time employment to freelance work, 
+                                            Now, I&apos;m transitioning from full-time employment to freelance work, 
                                             bringing the same level of professionalism and expertise to every 
                                             project I take on. My goal is to help businesses and individuals 
                                             bring their digital visions to life with clean, efficient, and 
@@ -237,7 +237,7 @@ export default function About() {
                                         <div className="p-4 bg-gray-800/90 rounded-xl border border-gray-700/50">
                                             <h5 className="font-semibold text-white mb-2">Ongoing Support</h5>
                                             <p className="text-gray-300 text-sm">
-                                                My relationship with clients doesn't end at delivery - 
+                                                My relationship with clients doesn&apos;t end at delivery - 
                                                 I provide ongoing support and maintenance.
                                             </p>
                                         </div>

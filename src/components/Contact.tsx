@@ -12,17 +12,15 @@ export default function Contact() {
         subject: "",
         message: ""
     });
-    const [isSubmitting, setIsSubmitting] = useState(false);
+
     const [isSubmitted, setIsSubmitted] = useState(false);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        setIsSubmitting(true);
         
         // Simulate form submission
         await new Promise(resolve => setTimeout(resolve, 2000));
         
-        setIsSubmitting(false);
         setIsSubmitted(true);
         
         // Reset form after 3 seconds
@@ -104,7 +102,7 @@ export default function Contact() {
                         Get In Touch
                     </h2>
                     <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-                        Ready to start your next project? Let's discuss how I can help bring your ideas to life.
+                        Ready to start your next project? Let&apos;s discuss how I can help bring your ideas to life.
                     </p>
                 </motion.div>
 
@@ -131,7 +129,7 @@ export default function Contact() {
                                         <Send className="w-16 h-16" />
                                     </div>
                                     <h4 className="text-xl font-semibold text-white mb-2">Message Sent!</h4>
-                                    <p className="text-gray-300">Thank you for reaching out. I'll get back to you soon.</p>
+                                    <p className="text-gray-300">Thank you for reaching out. I&apos;ll get back to you soon.</p>
                                 </motion.div>
                             ) : (
                                 <form onSubmit={handleSubmit} className="space-y-6">
@@ -297,7 +295,7 @@ export default function Contact() {
                                     <span className="text-gray-300">Available for new projects</span>
                                 </div>
                                 <p className="text-gray-400 text-sm">
-                                    I'm currently accepting new freelance opportunities. 
+                                    I&apos;m currently accepting new freelance opportunities. 
                                     Typical response time is within 24 hours.
                                 </p>
                             </div>

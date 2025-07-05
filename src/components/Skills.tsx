@@ -169,7 +169,7 @@ export default function Skills() {
                             Always Learning
                         </h3>
                         <p className="text-gray-300 max-w-2xl mx-auto">
-                            Technology evolves rapidly, and I'm committed to staying current with the latest 
+                            Technology evolves rapidly, and I&apos;m committed to staying current with the latest 
                             trends and best practices. I regularly explore new frameworks, tools, and methodologies 
                             to deliver cutting-edge solutions.
                         </p>
