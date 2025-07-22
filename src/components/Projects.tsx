@@ -6,11 +6,11 @@ import { ExternalLink, Github, ArrowRight } from "lucide-react";
 export default function Projects() {
     const featuredProjects = [
         {
-            title: "E-Commerce Platform",
-            description: "A full-stack e-commerce solution with React, Next.js, and Stripe integration. Features include user authentication, product management, shopping cart, and payment processing.",
-            image: "/api/placeholder/600/400",
-            technologies: ["Next.js", "React", "TypeScript", "Stripe", "PostgreSQL"],
-            liveUrl: "#",
+            title: "Real Estate Landing App - Frontend Project",
+            description: "Developed a responsive real estate frontend app simulating a freelance project. The UI showcases property listings, service offerings, team section, and a working contact form layout. Built with a clean design system, it’s optimized for mobile and desktop views.",
+            image: "/images/real-estate.png",
+            technologies: ["Next.js", "React", "TypeScript", "Shadcn", "Tailwindcss"],
+            liveUrl: "https://realestate-pi-one.vercel.app/#properties",
             githubUrl: "#",
             featured: true
         },
