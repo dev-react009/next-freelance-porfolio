@@ -15,23 +15,23 @@ export default function Projects() {
             featured: true
         },
         {
-            title: "Task Management App",
-            description: "A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.",
+            title: "Chat App",
+            description: "Real-time messaging app with user authentication and file sharing capabilities.",
             image: "/api/placeholder/600/400",
             technologies: ["React", "Node.js", "Socket.io", "MongoDB", "Express"],
-            liveUrl: "#",
-            githubUrl: "#",
+            liveUrl: "https://chat-app-react-coral.vercel.app/",
+            githubUrl: "https://github.com/dev-react009/chat-app-react",
             featured: true
         },
-        {
-            title: "Portfolio Website",
-            description: "A modern, responsive portfolio website with animations, dark mode, and interactive elements built with Next.js and Framer Motion.",
-            image: "/api/placeholder/600/400",
-            technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
-            liveUrl: "#",
-            githubUrl: "#",
-            featured: true
-        }
+        // {
+        //     title: "Portfolio Website",
+        //     description: "A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.",
+        //     image: "/api/placeholder/600/400",
+        //     technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
+        //     liveUrl: "#",
+        //     githubUrl: "#",
+        //     featured: true
+        // }
     ];
 
     const otherProjects = [
@@ -40,7 +40,7 @@ export default function Projects() {
             description: "Real-time weather application with location-based forecasts and interactive maps.",
             technologies: ["React", "OpenWeather API", "Chart.js", "Geolocation"],
             liveUrl: "#",
-            githubUrl: "#"
+            githubUrl: "https://github.com/dev-react009/Weather-dashboard-frontend"
         },
         {
             title: "Blog Platform",
@@ -50,9 +50,9 @@ export default function Projects() {
             githubUrl: "#"
         },
         {
-            title: "Chat Application",
-            description: "Real-time messaging app with user authentication and file sharing capabilities.",
-            technologies: ["React", "Socket.io", "Node.js", "MongoDB"],
+            title: "Task Management App",
+             description: "A modern, responsive portfolio website with animations, dark mode,and interactive elements built with Angular",
+            technologies: ["Angular"],
             liveUrl: "#",
             githubUrl: "#"
         },
@@ -60,8 +60,8 @@ export default function Projects() {
             title: "Fitness Tracker",
             description: "Personal fitness tracking application with workout planning and progress analytics.",
             technologies: ["React Native", "Firebase", "Chart.js", "Expo"],
-            liveUrl: "#",
-            githubUrl: "#"
+            liveUrl: "https://fit-track-hrfc.vercel.app/",
+            githubUrl: "https://github.com/dev-react009/fitTrack"
         },
         {
             title: "Recipe Finder",
@@ -73,9 +73,9 @@ export default function Projects() {
         {
             title: "Expense Tracker",
             description: "Personal finance management app with budget tracking and expense categorization.",
-            technologies: ["React", "Chart.js", "Local Storage", "PWA"],
+            technologies: ["React", "Chart.js", "Next.js", "Clerk","Drizzle ORM"],
             liveUrl: "#",
-            githubUrl: "#"
+            githubUrl: "https://github.com/dev-react009/Expenses-Tracker"
         }
     ];
 

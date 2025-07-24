@@ -4,30 +4,83 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Clock, Send, Github, Linkedin, Twitter } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import emailjs from '@emailjs/browser';
+
+interface FormData {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}
+
+interface EmailConfig {
+    serviceId: string;
+    templateId: string;
+    publicKey: string;
+}
+
+const emailConfig: EmailConfig = {
+    serviceId: process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+    templateId: process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+    publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+};
 
 export default function Contact() {
-    const [formData, setFormData] = useState({
+    const [formData, setFormData] = useState<FormData>({
         name: "",
         email: "",
         subject: "",
         message: ""
     });
-
+    
+    const [isLoading, setIsLoading] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+
+    const RESET_DELAY = 3000;
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         
-        // Simulate form submission
-        await new Promise(resolve => setTimeout(resolve, 2000));
-        
-        setIsSubmitted(true);
-        
-        // Reset form after 3 seconds
-        setTimeout(() => {
-            setIsSubmitted(false);
-            setFormData({ name: "", email: "", subject: "", message: "" });
-        }, 3000);
+        // Clear any previous errors
+        setError(null);
+        setIsLoading(true);
+
+        try {
+            const templateParams = {
+                from_name: formData.name.trim(),
+                from_email: formData.email.trim(),
+                subject: formData.subject.trim(),
+                message: formData.message.trim(),
+                // Optional: Add timestamp
+                sent_at: new Date().toLocaleString(),
+            };
+            
+            // Send email using the config object or direct env variables
+            const response = await emailjs.send(
+                emailConfig.serviceId,
+                emailConfig.templateId,
+                templateParams,
+                emailConfig.publicKey
+            );
+
+            // Check if email was sent successfully
+            if (response.status === 200) {
+                setIsSubmitted(true);
+                
+                // Reset form after delay
+                setTimeout(() => {
+                    setIsSubmitted(false);
+                    setFormData({ name: "", email: "", subject: "", message: "" });
+                }, RESET_DELAY);
+            }
+
+        } catch (error) {
+            console.error("Error sending email:", error);
+            setError("Failed to send message. Please try again later.");
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -41,14 +94,8 @@ export default function Contact() {
         {
             icon: <Mail className="w-5 h-5" />,
             title: "Email",
-            value: "sriram@example.com",
-            link: "mailto:sriram@example.com"
-        },
-        {
-            icon: <Phone className="w-5 h-5" />,
-            title: "Phone",
-            value: "+1 (555) 123-4567",
-            link: "tel:+15551234567"
+            value: "sriram.garapati16@gmail.com",
+            link: "mailto:sriram.garapati16@gmail.com" // Fixed the link
         },
         {
             icon: <MapPin className="w-5 h-5" />,
@@ -68,8 +115,8 @@ export default function Contact() {
         {
             name: "GitHub",
             icon: <Github className="w-5 h-5" />,
-            url: "https://github.com/sriramgarapati",
-            color: "hover:text-gray-300"
+            url: "https://github.com/dev-react009",
+            color: "hover:text-blue-400"
         },
         {
             name: "LinkedIn",
@@ -80,7 +127,7 @@ export default function Contact() {
         {
             name: "Twitter",
             icon: <Twitter className="w-5 h-5" />,
-            url: "https://twitter.com/sriramgarapati",
+            url: "https://x.com/sriram_gsr16",
             color: "hover:text-blue-400"
         }
     ];
@@ -118,6 +165,18 @@ export default function Contact() {
                         <div className="bg-gray-800/90 rounded-2xl border border-gray-700/50 p-8">
                             <h3 className="text-2xl font-semibold text-white mb-6">Send a Message</h3>
                             
+                            {/* Error Message */}
+                            {error && (
+                                <motion.div
+                                    className="mb-6 p-4 bg-red-900/50 border border-red-500/50 rounded-lg text-red-300"
+                                    initial={{ opacity: 0, y: -10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.3 }}
+                                >
+                                    {error}
+                                </motion.div>
+                            )}
+                            
                             {isSubmitted ? (
                                 <motion.div
                                     className="text-center py-8"
@@ -145,7 +204,8 @@ export default function Contact() {
                                                 value={formData.name}
                                                 onChange={handleChange}
                                                 required
-                                                className="w-full px-4 py-3 bg-gray-700/90 border border-gray-600/50 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                                                disabled={isLoading}
+                                                className="w-full px-4 py-3 bg-gray-700/90 border border-gray-600/50 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                                                 placeholder="Your name"
                                             />
                                         </div>
@@ -160,7 +220,8 @@ export default function Contact() {
                                                 value={formData.email}
                                                 onChange={handleChange}
                                                 required
-                                                className="w-full px-4 py-3 bg-gray-700/90 border border-gray-600/50 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                                                disabled={isLoading}
+                                                className="w-full px-4 py-3 bg-gray-700/90 border border-gray-600/50 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                                                 placeholder="your@email.com"
                                             />
                                         </div>
@@ -177,7 +238,8 @@ export default function Contact() {
                                             value={formData.subject}
                                             onChange={handleChange}
                                             required
-                                            className="w-full px-4 py-3 bg-gray-700/90 border border-gray-600/50 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                                            disabled={isLoading}
+                                            className="w-full px-4 py-3 bg-gray-700/90 border border-gray-600/50 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                                             placeholder="Project inquiry"
                                         />
                                     </div>
@@ -192,22 +254,40 @@ export default function Contact() {
                                             value={formData.message}
                                             onChange={handleChange}
                                             required
+                                            disabled={isLoading}
                                             rows={6}
-                                            className="w-full px-4 py-3 bg-gray-700/90 border border-gray-600/50 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 resize-none"
+                                            className="w-full px-4 py-3 bg-gray-700/90 border border-gray-600/50 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 resize-none disabled:opacity-50 disabled:cursor-not-allowed"
                                             placeholder="Tell me about your project..."
                                         ></textarea>
                                     </div>
                                     
                                     <motion.div
-                                        whileHover={{ scale: 1.02 }}
-                                        whileTap={{ scale: 0.98 }}
+                                        whileHover={{ scale: isLoading ? 1 : 1.02 }}
+                                        whileTap={{ scale: isLoading ? 1 : 0.98 }}
                                     >
                                         <Button 
                                             type="submit"
-                                            className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white py-3 px-6 rounded-lg font-semibold transition-all duration-300 cursor-pointer"
+                                            disabled={isLoading}
+                                            className={`w-full py-3 px-6 rounded-lg font-semibold transition-all duration-300 ${
+                                                isLoading 
+                                                    ? 'bg-gray-600 cursor-not-allowed' 
+                                                    : 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 cursor-pointer'
+                                            } text-white`}
                                         >
-                                            <Send className="w-4 h-4 mr-2" />
-                                            Send Message
+                                            {isLoading ? (
+                                                <div className="flex items-center justify-center">
+                                                    <svg className="animate-spin -ml-1 mr-3 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                                    </svg>
+                                                    Sending...
+                                                </div>
+                                            ) : (
+                                                <>
+                                                    <Send className="w-4 h-4 mr-2" />
+                                                    Send Message
+                                                </>
+                                            )}
                                         </Button>
                                     </motion.div>
                                 </form>
@@ -305,4 +385,4 @@ export default function Contact() {
             </div>
         </section>
     );
-} 
+}

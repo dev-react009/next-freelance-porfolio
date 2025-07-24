@@ -93,7 +93,7 @@ export default function Hero() {
                     <span className="font-semibold text-white">React</span>, and{" "}
                     <span className="font-semibold text-white">TypeScript</span>
                     <br />
-                    <span className="text-gray-400">2+ years enterprise experience • Ready for your project</span>
+                    <span className="text-gray-400">3+ years enterprise experience • Ready for your project</span>
                 </motion.p>
 
                 {/* CTA Buttons */}
@@ -101,10 +101,12 @@ export default function Hero() {
                     className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
                     variants={itemVariants}
                 >
-                    <motion.div
+                    <motion.a
+                        href="#contact"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                     >
+                        
                         <Button 
                             size="lg" 
                             className="group bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 text-base font-semibold shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
@@ -112,9 +114,10 @@ export default function Hero() {
                             Start Project
                             <ArrowRight className="w-4 h-4 ml-2" />
                         </Button>
-                    </motion.div>
+                    </motion.a>
                     
-                    <motion.div
+                    <motion.a
+                        href="#projects"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                     >
@@ -125,7 +128,7 @@ export default function Hero() {
                         >
                             View Work
                         </Button>
-                    </motion.div>
+                    </motion.a>
                 </motion.div>
 
                 {/* Tech stack */}
