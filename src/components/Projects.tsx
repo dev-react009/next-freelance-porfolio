@@ -10,7 +10,7 @@ export default function Projects() {
             description: "Developed a responsive real estate frontend app simulating a freelance project. The UI showcases property listings, service offerings, team section, and a working contact form layout. Built with a clean design system, it’s optimized for mobile and desktop views.",
             image: "/images/real-estate.png",
             technologies: ["Next.js", "React", "TypeScript", "Shadcn", "Tailwindcss"],
-            liveUrl: "https://realestate-pi-one.vercel.app/#properties",
+            liveUrl: "https://real-estate-hub-g456.vercel.app/",
             githubUrl: "#",
             featured: true
         },
